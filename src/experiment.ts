@@ -23,15 +23,11 @@ async function main() {
 
     const signer = new Wallet("0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e", provider);
     const factory = new ContractFactory<any[], TokenContract>(ERC20ABI, ERC20ByteCode, signer);
-    console.log("deploying ERC20 token");
-    const contract = await factory.deploy(initialSupply);
-    await contract.waitForDeployment();
-    console.log("ERC20 token deployed to %s", await contract.getAddress());
     for(let index = 0; index <= 5; index++) {
-        console.log("approving 'someone' to spend ERC20 token");
-        const fractionOfSupply = initialSupply / 1000n;
-        const someone = "0x0000000000000000000000000000000000000000";
-        await contract.approve(someone, fractionOfSupply)
+        console.log("deploying ERC20 token");
+        const contract = await factory.deploy(initialSupply);
+        // await contract.waitForDeployment(); // <-- Why is this needed? In ether v5, one was not forced to wait until the deployment transaction was mined.
+        console.log("ERC20 token deployed to %s", await contract.getAddress());
     }
     console.log("done")
 }
