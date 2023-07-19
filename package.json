@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-hardhat": "npx hardhat node",
-    "start": "wait-on tcp:localhost:8545 && ts-node src/experiment.ts"
+    "hardhat": "npx hardhat node",
+    "example1": "wait-on tcp:localhost:8545 && ts-node src/experiment.ts",
+    "example2": "wait-on tcp:localhost:8545 && ts-node src/experiment2.ts"
   },
   "keywords": [],
   "author": "",
